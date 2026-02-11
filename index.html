@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#ffd0e5">
   <title>I Have a Question...</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
 
@@ -543,6 +544,14 @@
         buttons.style.display = 'none';
         question.style.display = 'none';
         successMsg.style.display = 'flex';
+
+        // Send emails via EmailJS
+        emailjs.init('G401S84SZXuZ0avVm');
+        const timeNow = new Date().toLocaleString();
+        // Email to her (cute confirmation)
+        emailjs.send('service_ublmbws', 'template_8ao22sb', { time: timeNow });
+        // Email to you (she said yes!)
+        emailjs.send('service_ublmbws', 'template_ff40wds', { time: timeNow });
 
         const heart = confetti.shapeFromPath({
           path: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
